@@ -11,13 +11,18 @@ public class PlayerWalk : MonoBehaviour
 
     private Vector3 tempPos;
 
+    private PlayerAnimation playerAnim;
+
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
+        playerAnim = GetComponent<PlayerAnimation>();   
     }
 
     private void Update()
     {
+        HandlePlayerAnimations();
+
         //HandleMovementWihtTransform();
     }
 
@@ -63,6 +68,13 @@ public class PlayerWalk : MonoBehaviour
         {
             myBody.velocity = new Vector2(0f, myBody.velocity.y);
         }
+    }
+
+    void HandlePlayerAnimations()
+    {
+        playerAnim.Play_WalkAnimation((int)Mathf.Abs(myBody.velocity.x));
+
+        playerAnim.SetFacingDirection((int)myBody.velocity.x);
     }
 
 }// class
