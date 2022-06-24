@@ -20,7 +20,7 @@ public class PlayerAnimation : MonoBehaviour
         anim.SetInteger(TagManager.WALK_ANIMATION_PARAMETER, walk);
     }
 
-    public void Player_JumpAnimation(bool jump)
+    public void Play_JumpAnimation(bool jump)
     {
         anim.SetBool(TagManager.JUMP_ANIMATION_PARAMETER, jump);
     }

@@ -13,10 +13,19 @@ public class PlayerWalk : MonoBehaviour
 
     private PlayerAnimation playerAnim;
 
+    [SerializeField]
+    private LayerMask groundLayer;
+
+    [SerializeField]
+    private Transform groundCheckPos;
+
+    private BoxCollider2D boxCol2d;
+
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
         playerAnim = GetComponent<PlayerAnimation>();   
+        boxCol2d = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -24,6 +33,8 @@ public class PlayerWalk : MonoBehaviour
         HandlePlayerAnimations();
 
         //HandleMovementWihtTransform();
+
+        HandleJumping();
     }
 
     private void FixedUpdate()
@@ -75,6 +86,29 @@ public class PlayerWalk : MonoBehaviour
         playerAnim.Play_WalkAnimation((int)Mathf.Abs(myBody.velocity.x));
 
         playerAnim.SetFacingDirection((int)myBody.velocity.x);
+
+        playerAnim.Play_JumpAnimation(!IsGrounded());
+    }
+
+    bool IsGrounded()
+    {
+        //Debug.DrawRay(groundCheckPos.position, Vector2.down * 0.1f, Color.red);
+
+        //return Physics2D.Raycast(groundCheckPos.position, Vector2.down, 0.1f, grondLayer);
+
+        return Physics2D.BoxCast(boxCol2d.bounds.center,
+            boxCol2d.bounds.size, 0f, Vector2.down, 0.1f, groundLayer);
+    }
+
+    void HandleJumping()
+    {
+        if (Input.GetButtonDown(TagManager.JUMP_BUTTON))
+        {
+            if (IsGrounded())
+            {
+                myBody.velocity = new Vector2(myBody.velocity.x, jumpForce);
+            }
+        }
     }
 
 }// class
