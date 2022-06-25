@@ -8,16 +8,24 @@ public class DeactivateObject : MonoBehaviour
     [SerializeField]
     private float deactivateTimer = 3f;
 
-    private void Start()
+
+    private void OnEnable()
     {
         Invoke("DeactivateGameObject", deactivateTimer);
+    }
+
+    private void OnDisable()
+    {
+        CancelInvoke("DeactivateGameObject");
     }
 
     void DeactivateGameObject()
     {
         if (gameObject.activeInHierarchy)
         {
-            Destroy(gameObject);
+            CancelInvoke("DeactivateGameObject");
+            gameObject.SetActive(false);
+           // Destroy(gameObject);
         }
     }
 
