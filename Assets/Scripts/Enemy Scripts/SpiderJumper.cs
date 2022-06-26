@@ -13,11 +13,58 @@ public class SpiderJumper : MonoBehaviour
     [SerializeField]
     private float minWaitTime = 1.5f, maxWailtTime = 3.5f;
 
-    private float jupmTimer;
+    private float jumpTimer;
 
-    private float canJump;
+    private bool canJump;
 
+    private void Awake()
+    {
+        myBody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
 
+    private void Start()
+    {
+        jumpTimer = Time.time + Random.Range(minWaitTime, maxWailtTime);
+    }
+
+    private void Update()
+    {
+        HandleJumping();
+        HandleAnimations();
+    }
+
+    void HandleJumping()
+    {
+        if (Time.time > jumpTimer)
+        {
+            jumpTimer = Time.time + Random.Range(minWaitTime, maxWailtTime);
+            Jump();
+        }
+
+        if (myBody.velocity.magnitude == 0)
+        {
+            canJump = true;
+        }
+    }
+
+    void Jump()
+    {
+        if (canJump)
+        {
+            canJump = false;
+            myBody.velocity = new Vector2(0f, Random.Range(minJumpForce, maxjumpForce));
+        }
+    }
+
+    void HandleAnimations()
+    {
+        if (myBody.velocity.magnitude == 0)
+            anim.SetBool(TagManager.JUMP_ANIMATION_PARAMETER, false);
+        else 
+            anim.SetBool(TagManager.JUMP_ANIMATION_PARAMETER, true);
+
+    }
 
 
 
