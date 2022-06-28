@@ -7,5 +7,7 @@ public static class TagManager
 
     public static string JUMP_BUTTON = "Jump";
 
+    public static string PLAYER_TAG = "Player";
+
 
 }// class
