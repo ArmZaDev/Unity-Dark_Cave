@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: Ground Check Position
   m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -42,12 +42,13 @@ GameObject:
   - component: {fileID: 4735280425497581509}
   - component: {fileID: 4735280425497581508}
   - component: {fileID: 4735280425497581507}
+  - component: {fileID: 1213786154401446061}
   - component: {fileID: 4735280425497581511}
   - component: {fileID: 4735280425497581512}
   - component: {fileID: 4735280425497581513}
   m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +106,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -733632351
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2311659948842064771, guid: f1732a4f31949e745a7039f65be8927f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -147,7 +148,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.016708046, y: 0.0029751658}
@@ -163,6 +164,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.81658393, y: 1.7540497}
   m_EdgeRadius: 0
+--- !u!70 &1213786154401446061
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4735280425497581506}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.062097937, y: 0.004818976}
+  m_Size: {x: 0.72580415, y: 1.750362}
+  m_Direction: 0
 --- !u!50 &4735280425497581511
 Rigidbody2D:
   serializedVersion: 4
