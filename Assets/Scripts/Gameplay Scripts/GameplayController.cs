@@ -20,6 +20,17 @@ public class GameplayController : MonoBehaviour
 
     private bool gameRunning;
 
+    [SerializeField]
+    private Canvas gameOverCanvas;
+
+    [SerializeField]
+    private Text winText, loseText;
+
+    [SerializeField]
+    private float restartLvTime = 3f;
+
+    private GameObject player;
+
     private void Awake()
     {
         if (instance == null)
@@ -42,6 +53,8 @@ public class GameplayController : MonoBehaviour
 
         gameRunning = true;
 
+        player = GameObject.FindWithTag(TagManager.PLAYER_TAG);
+
     }
 
     private void Update()
@@ -62,7 +75,7 @@ public class GameplayController : MonoBehaviour
         {
             // game over
             gameRunning = false;
-
+            GameOver(false);
         }
     }
 
@@ -75,6 +88,7 @@ public class GameplayController : MonoBehaviour
         {
             // game over 
             gameRunning = false;
+            GameOver(false);
         }
     }
 
@@ -94,6 +108,31 @@ public class GameplayController : MonoBehaviour
         if (timeValue > timeMax)
             timeValue = timeMax;
 
+    }
+
+    public void GameOver(bool win)
+    {
+        Destroy(player);
+        gameOverCanvas.enabled = true;
+
+        gameRunning = false;
+
+        if (win)
+        {
+            winText.gameObject.SetActive(true);
+        }
+        else
+        {
+            loseText.gameObject.SetActive(true);
+        }
+
+        Invoke("RestartLevel", restartLvTime);
+    }
+
+    void RestartLevel()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene
+            (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
 

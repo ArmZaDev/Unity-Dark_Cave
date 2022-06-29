@@ -111,6 +111,30 @@ public class PlayerWalk : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(TagManager.ENEMY_TAG))
+        {
+            collision.gameObject.SetActive(false);
+            GameplayController.instance.GameOver(false);
+        }
+
+        if (collision.CompareTag(TagManager.GOAL_TAG))
+        {
+            GameplayController.instance.GameOver(true);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag(TagManager.ENEMY_TAG))
+        {
+            GameplayController.instance.GameOver(false);
+        }
+    }
+
+
+
 }// class
 
 
