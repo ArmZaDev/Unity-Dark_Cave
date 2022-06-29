@@ -106,6 +106,7 @@ public class PlayerWalk : MonoBehaviour
         {
             if (IsGrounded())
             {
+                SoundController.instance.Play_PlayerJumpSound();
                 myBody.velocity = new Vector2(myBody.velocity.x, jumpForce);
             }
         }

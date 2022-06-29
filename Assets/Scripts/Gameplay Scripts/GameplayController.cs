@@ -112,6 +112,8 @@ public class GameplayController : MonoBehaviour
 
     public void GameOver(bool win)
     {
+        SoundController.instance.Play_GameOverSound();
+
         Destroy(player);
         gameOverCanvas.enabled = true;
 

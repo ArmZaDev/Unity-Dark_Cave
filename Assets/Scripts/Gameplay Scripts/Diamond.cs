@@ -14,6 +14,7 @@ public class Diamond : MonoBehaviour
     {
         if (collision.CompareTag(TagManager.PLAYER_TAG))
         {
+            SoundController.instance.Play_CollectableSound();
             Door.instance.DiamondCollected();
             gameObject.SetActive(false);
         }

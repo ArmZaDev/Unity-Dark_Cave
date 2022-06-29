@@ -13,7 +13,7 @@ public class Collectable : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(TagManager.PLAYER_TAG))
-        {
+        {        
             if (timeCollectable)
             {
                 GameplayController.instance.IncreaseTime(collectableValue);
