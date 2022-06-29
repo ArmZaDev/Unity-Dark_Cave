@@ -32,7 +32,9 @@ public class GameplayController : MonoBehaviour
 
         timeSlider.maxValue = timeValue;
         timeSlider.minValue = 0f;
-        airSlider.value = timeValue;
+        timeSlider.value = timeValue;
+
+        airValue = airMax;
 
         airSlider.maxValue = airValue;
         airSlider.minValue = 0f;
@@ -67,9 +69,32 @@ public class GameplayController : MonoBehaviour
     void ReduceAir()
     {
         airValue -= airDeductValue * Time.deltaTime;
+        airSlider.value = airValue;
+
+        if (airValue <= 0f)
+        {
+            // game over 
+            gameRunning = false;
+        }
     }
 
+    public void IncreaseAir(float air)
+    {
+        airValue += air;
 
+        if (airValue > airMax)
+            airValue = airMax;
+        
+    }
+
+    public void IncreaseTime(float time)
+    {
+        timeValue += time;
+
+        if (timeValue > timeMax)
+            timeValue = timeMax;
+
+    }
 
 
 }//class
